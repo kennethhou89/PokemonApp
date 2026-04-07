@@ -49,13 +49,11 @@ export function BottomNav() {
           key={tab.to}
           to={tab.to}
           end={tab.to === '/'}
-          className="flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-medium"
+          className={({ isActive }) => `flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-medium transition-colors ${isActive ? 'bg-gray-100' : ''}`}
         >
           {({ isActive }) => (
             <>
-              <div className={`px-3 py-0.5 rounded transition-colors ${isActive ? 'bg-primary' : ''}`}>
-                {tab.icon(isActive)}
-              </div>
+              {tab.icon(isActive)}
               <span className={isActive ? 'text-black font-bold' : 'text-gray-400'}>{tab.label}</span>
             </>
           )}
