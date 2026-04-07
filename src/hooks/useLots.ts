@@ -54,7 +54,7 @@ export function useLots() {
       ;(items ?? []).forEach(row => {
         const lid = row.lot_id as string
         countMap.set(lid, (countMap.get(lid) ?? 0) + 1)
-        const img = (row.card as { image_small: string | null } | null)?.image_small
+        const img = (row.card as unknown as { image_small: string | null } | null)?.image_small
         if (img) {
           const imgs = imageMap.get(lid) ?? []
           if (imgs.length < 6) imgs.push(img)
@@ -86,7 +86,7 @@ export function useLotDetail(lotId: string | undefined) {
         .from('lots')
         .select('*')
         .eq('id', lotId)
-        .single()
+        .maybeSingle()
 
       if (lotError) throw lotError
       if (!lot) return null

@@ -47,8 +47,6 @@ export function LotViewPage() {
     return sum + (val ?? 0) * item.quantity
   }, 0)
 
-  const totalCost = lot.items.reduce((sum, item) => sum + (item.cost != null ? Number(item.cost) : 0) * item.quantity, 0)
-
   return (
     <>
       <PageHeader

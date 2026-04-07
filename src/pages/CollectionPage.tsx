@@ -13,6 +13,7 @@ import { estimatedValue } from '@/types/card'
 import { useCurrency } from '@/contexts/CurrencyContext'
 import type { CollectionItemWithCard } from '@/types/card'
 
+
 type ViewMode = 'list' | 'grid'
 
 function fmt(n: number) {
@@ -88,8 +89,6 @@ function LotCard({ lot, onClick }: { lot: LotRow; onClick: () => void }) {
   )
 }
 
-type CollectionTab = 'cards' | 'lots'
-
 export function CollectionPage() {
   const navigate = useNavigate()
   const lot = useLot()
@@ -100,9 +99,8 @@ export function CollectionPage() {
     lot.startLot()
     navigate('/add-lot')
   }
-  const { filters, setSearch } = useUIStore()
+  const { filters, setSearch, collectionTab: tab, setCollectionTab: setTab } = useUIStore()
   const [showFilters, setShowFilters] = useState(false)
-  const [tab, setTab] = useState<CollectionTab>('cards')
   const [viewMode, setViewMode] = useState<ViewMode>(() =>
     (localStorage.getItem('collectionView') as ViewMode) ?? 'list'
   )
@@ -200,7 +198,7 @@ export function CollectionPage() {
               onClick={handleCreateLot}
               className="px-6 py-3 border-2 border-black bg-primary font-head font-bold text-sm shadow-[3px_3px_0px_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
             >
-              + Add Lot
+              + Create Lot
             </button>
           </div>
         ) : (
