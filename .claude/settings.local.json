@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(/opt/homebrew/bin/node node_modules/.bin/tsc --noEmit)",
+      "Bash(/usr/local/bin/node node_modules/.bin/tsc --noEmit)",
+      "Read(//opt/homebrew/Cellar/node@20/20.20.2/bin/**)",
+      "Read(//Users/kennethhou/.nvm/versions/node/**)",
+      "Bash(/opt/homebrew/bin/node /Users/kennethhou/Desktop/Claude/PokemonApp/node_modules/.bin/tsc --noEmit)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
