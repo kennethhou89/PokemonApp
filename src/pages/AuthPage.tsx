@@ -23,7 +23,15 @@ export function AuthPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-6 bg-white">
       <div className="mb-8 text-center">
-        <div className="text-5xl mb-3">&#128330;</div>
+        <div className="text-5xl mb-3">
+          <svg viewBox="0 0 100 100" className="w-14 h-14 mx-auto">
+            <circle cx="50" cy="50" r="48" fill="#fff" stroke="#222" strokeWidth="4"/>
+            <path d="M2 50 H98" stroke="#222" strokeWidth="4"/>
+            <path d="M2 50 A48 48 0 0 1 98 50" fill="#ef4444"/>
+            <circle cx="50" cy="50" r="14" fill="#fff" stroke="#222" strokeWidth="4"/>
+            <circle cx="50" cy="50" r="7" fill="#222"/>
+          </svg>
+        </div>
         <h1 className="text-2xl font-bold text-gray-900">PokeCards</h1>
         <p className="text-gray-500 text-sm mt-1">Your Pokemon card inventory</p>
       </div>

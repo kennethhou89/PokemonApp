@@ -53,10 +53,18 @@ body {
 #root {
   display: flex;
   flex-direction: column;
-  max-width: 480px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
   min-height: 100dvh;
   background: white;
   box-shadow: 6px 0 0 0 #000, -6px 0 0 0 #000;
+}
+
+/* Auto-fill grid utilities — tiles fill available width, reflow naturally */
+.grid-auto-tiles {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+.grid-auto-cards {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 }

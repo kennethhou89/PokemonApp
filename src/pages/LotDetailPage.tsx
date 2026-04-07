@@ -61,11 +61,14 @@ function NewLotView() {
     if (!lot.isActive) lot.startLot()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  const creatingRef = useRef(false)
+
   useEffect(() => {
-    if (lot.isActive && !lot.lotId && lot.lotName) {
+    if (lot.isActive && !lot.lotId && lot.lotName && !creatingRef.current) {
+      creatingRef.current = true
       createLot.mutateAsync({ name: lot.lotName, totalPaid: null })
         .then(id => lot.setLotId(id))
-        .catch(() => {})
+        .catch(() => { creatingRef.current = false })
     }
   }, [lot.isActive, lot.lotId, lot.lotName]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -756,7 +759,7 @@ function LotPageShell(props: LotPageShellProps) {
         </div>
       )}
 
-      {browseOpen && <LotBrowseModal onClose={onBrowseClose} />}
+      {browseOpen && <LotBrowseModal onClose={onBrowseClose} onRemoveCard={onRemoveCard} />}
     </>
   )
 }

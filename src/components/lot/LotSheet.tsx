@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import type { TCGCard } from '@/types/api'
 import type { Condition } from '@/types/card'
 import { CONDITION_MULTIPLIERS, CONDITION_LABELS } from '@/types/card'
@@ -58,7 +58,11 @@ export function LotSheet({ items, lotName, onConditionChange, onClose, onSuccess
     ) as (number | null)[]
   }, [cardsWithMarket, totalPaidNum])
 
+  const addingRef = useRef(false)
+
   async function handleAdd() {
+    if (addingRef.current) return
+    addingRef.current = true
     setAdding(true)
     setError('')
     try {
@@ -103,6 +107,7 @@ export function LotSheet({ items, lotName, onConditionChange, onClose, onSuccess
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to add cards')
       setAdding(false)
+      addingRef.current = false
     }
   }
 

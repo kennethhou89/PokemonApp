@@ -42,7 +42,7 @@ const tabs = [
 
 export function BottomNav() {
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white border-t-2 border-black flex z-40"
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] bg-white border-t-2 border-black flex z-40"
          style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       {tabs.map((tab) => (
         <NavLink

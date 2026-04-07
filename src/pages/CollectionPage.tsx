@@ -291,7 +291,7 @@ export function CollectionPage() {
 
       {isLoading ? (
         viewMode === 'grid' ? (
-          <div className="grid grid-cols-2 gap-3 px-4 pt-2">
+          <div className="grid grid-auto-cards gap-3 px-4 pt-2">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i}>
                 <div className="w-full aspect-[2.5/3.5] bg-gray-200 rounded-xl animate-pulse" />
@@ -335,7 +335,7 @@ export function CollectionPage() {
           </p>
         </div>
       ) : viewMode === 'grid' ? (
-        <div className="grid grid-cols-2 gap-3 px-4 pt-2 pb-6">
+        <div className="grid grid-auto-cards gap-3 px-4 pt-2 pb-6">
           {filtered.map((item) => (
             <CardGridItem key={item.id} item={item} />
           ))}

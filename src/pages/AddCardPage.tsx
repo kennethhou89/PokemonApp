@@ -629,7 +629,7 @@ export function AddCardPage() {
 
           {/* Cards grid */}
           {setCardsLoading ? (
-            <div className="grid grid-cols-2 gap-3 px-4 pt-1 pb-4">
+            <div className="grid grid-auto-cards gap-3 px-4 pt-1 pb-4">
               {Array.from({ length: 8 }).map((_, i) => <GridCardSkeleton key={i} />)}
             </div>
           ) : filteredSetCards.length === 0 ? (
@@ -643,7 +643,7 @@ export function AddCardPage() {
               <button onClick={() => setSetSearch('')} className="mt-3 text-sm text-blue-500 font-medium">Clear</button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-3 px-4 pt-1 pb-4">
+            <div className="grid grid-auto-cards gap-3 px-4 pt-1 pb-4">
               {filteredSetCards.map((card) => {
                 const entry = selectedCards.get(card.id)
                 return selectMode && entry ? (
@@ -773,16 +773,16 @@ export function AddCardPage() {
 
           {/* Browse by Series */}
           <div className="pb-6">
-            <p className="px-4 pt-3 pb-2 text-[10px] font-head font-bold text-gray-500 uppercase tracking-widest">Browse by Series</p>
+            <p className="px-4 pt-3 pb-2 text-xs font-head font-bold text-gray-500 uppercase tracking-widest">Browse by Series</p>
             {setsLoading ? (
-              <div className="grid grid-cols-2 gap-2 px-4">
+              <div className="grid grid-auto-tiles gap-2 px-4">
                 {Array.from({ length: 8 }).map((_, i) => <SetGridTileSkeleton key={i} />)}
               </div>
             ) : (
               seriesGroups.map(({ series, sets: groupSets }) => (
                 <div key={series} className="mb-4">
                   <p className="px-4 pb-1.5 text-[10px] font-head font-bold text-gray-400 uppercase tracking-widest">{series}</p>
-                  <div className="grid grid-cols-2 gap-2 px-4">
+                  <div className="grid grid-auto-tiles gap-2 px-4">
                     {groupSets.map((set) => (
                       <SetGridTile key={set.id} set={set} onClick={() => openSet(set)} />
                     ))}
