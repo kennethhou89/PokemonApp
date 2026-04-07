@@ -731,7 +731,7 @@ export function AddCardPage() {
                 </svg>
               </div>
               <div className="flex-1 min-w-0">
-                <div className="font-head font-bold text-sm text-black">Add Lot</div>
+                <div className="font-head font-bold text-sm text-black">Create Lot</div>
                 <div className="text-xs text-gray-500 font-sans">Search cards from any set, enter total paid</div>
               </div>
               <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

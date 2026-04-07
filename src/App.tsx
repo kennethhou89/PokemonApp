@@ -25,9 +25,11 @@ function AuthGate({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     void supabase.auth.getSession().then(({ data }) => setSession(data.session))
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session)
-      queryClient.clear()
+      if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') {
+        queryClient.removeQueries()
+      }
     })
     return () => subscription.unsubscribe()
   }, [])

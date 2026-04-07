@@ -99,11 +99,7 @@ export function CollectionPage() {
     lot.startLot()
     navigate('/add-lot')
   }
-  const store = useUIStore() as any
-  const filters = store.filters
-  const setSearch = store.setSearch as (s: string) => void
-  const tab = store.collectionTab as 'cards' | 'lots'
-  const setTab = store.setCollectionTab as (t: 'cards' | 'lots') => void
+  const { filters, setSearch, collectionTab: tab, setCollectionTab: setTab } = useUIStore()
   const [showFilters, setShowFilters] = useState(false)
   const [viewMode, setViewMode] = useState<ViewMode>(() =>
     (localStorage.getItem('collectionView') as ViewMode) ?? 'list'

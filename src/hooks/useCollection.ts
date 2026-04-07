@@ -130,7 +130,7 @@ export function useAddCard() {
           .eq('card_id', cardId)
           .eq('condition', condition)
           .eq('graded', false)
-          .single()
+          .maybeSingle()
 
         if (existing) {
           const { error } = await supabase

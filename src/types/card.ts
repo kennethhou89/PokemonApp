@@ -90,6 +90,8 @@ export interface CollectionItem {
   price_override: number | null // manual market price (replaces API when set)
   // Photos
   user_photos: string[]         // storage paths in card-photos bucket
+  // Lot
+  lot_id: string | null
 }
 
 export interface CollectionItemWithCard extends CollectionItem {

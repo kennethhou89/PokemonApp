@@ -9,7 +9,11 @@ interface FilterState {
   sortDir: 'asc' | 'desc'
 }
 
+export type CollectionTab = 'cards' | 'lots'
+
 interface UIStore {
+  collectionTab: CollectionTab
+  setCollectionTab: (tab: CollectionTab) => void
   filters: FilterState
   setSearch: (s: string) => void
   setConditions: (c: Condition[]) => void
@@ -28,6 +32,8 @@ const defaultFilters: FilterState = {
 }
 
 export const useUIStore = create<UIStore>((set) => ({
+  collectionTab: 'cards' as CollectionTab,
+  setCollectionTab: (collectionTab) => set({ collectionTab }),
   filters: defaultFilters,
   setSearch: (search) => set((s) => ({ filters: { ...s.filters, search } })),
   setConditions: (conditions) => set((s) => ({ filters: { ...s.filters, conditions } })),
