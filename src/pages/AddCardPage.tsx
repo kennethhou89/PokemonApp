@@ -762,7 +762,7 @@ export function AddCardPage() {
           {/* New Releases carousel */}
           <div className="pt-4 pb-2">
             <p className="px-4 mb-2 text-[10px] font-head font-bold text-gray-500 uppercase tracking-widest">New Releases</p>
-            <div className="flex gap-3 px-4 overflow-x-auto snap-x snap-mandatory pb-1" style={{ scrollbarWidth: 'none' }}>
+            <div className="flex px-4 py-0.5 overflow-x-auto snap-x snap-mandatory" style={{ scrollbarWidth: 'none' }}>
               {setsLoading
                 ? Array.from({ length: 6 }).map((_, i) => <SetLogoCardSkeleton key={i} />)
                 : recentSets.map((set) => (
@@ -775,14 +775,14 @@ export function AddCardPage() {
           <div className="pb-6">
             <p className="px-4 pt-3 pb-2 text-xs font-head font-bold text-gray-500 uppercase tracking-widest">Browse by Series</p>
             {setsLoading ? (
-              <div className="grid grid-auto-tiles gap-2 px-4">
+              <div className="grid grid-auto-tiles mx-4">
                 {Array.from({ length: 8 }).map((_, i) => <SetGridTileSkeleton key={i} />)}
               </div>
             ) : (
               seriesGroups.map(({ series, sets: groupSets }) => (
                 <div key={series} className="mb-4">
                   <p className="px-4 pb-1.5 text-[10px] font-head font-bold text-gray-400 uppercase tracking-widest">{series}</p>
-                  <div className="grid grid-auto-tiles gap-2 px-4">
+                  <div className="grid grid-auto-tiles mx-4">
                     {groupSets.map((set) => (
                       <SetGridTile key={set.id} set={set} onClick={() => openSet(set)} />
                     ))}

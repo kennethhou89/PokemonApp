@@ -4,7 +4,7 @@ export function SetGridTile({ set, onClick }: { set: TCGSet; onClick: () => void
   return (
     <button
       onClick={onClick}
-      className="overflow-hidden rounded-lg bg-gray-50 active:bg-gray-100 transition-colors text-left"
+      className="overflow-hidden bg-white outline outline-2 outline-black active:bg-gray-50 transition-colors text-left"
     >
       <div className="h-24 py-5 flex items-center justify-center px-3">
         <img src={set.images.logo} alt={set.name} className="w-full h-full object-contain" loading="lazy" />
@@ -19,7 +19,7 @@ export function SetGridTile({ set, onClick }: { set: TCGSet; onClick: () => void
 
 export function SetGridTileSkeleton() {
   return (
-    <div className="rounded-lg bg-gray-50 overflow-hidden">
+    <div className="overflow-hidden outline outline-2 outline-black">
       <div className="h-24 bg-gray-100 animate-pulse" />
       <div className="px-2.5 pb-2 pt-1">
         <div className="h-2.5 bg-gray-200 rounded w-3/4 animate-pulse" />
