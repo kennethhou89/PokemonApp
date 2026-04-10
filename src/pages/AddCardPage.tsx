@@ -297,9 +297,9 @@ export function AddCardPage() {
                 </>
               ) : certError === 'rate_limited' ? (
                 <>
-                  <p className="text-base font-semibold text-gray-700">Too many lookups</p>
+                  <p className="text-base font-semibold text-gray-700">Daily limit reached</p>
                   <p className="text-sm text-gray-400 mt-1.5 leading-relaxed">
-                    PSA's daily lookup limit has been reached. Try again tomorrow.
+                    We've hit our PSA lookup limit for today — we're a free app so we get a small quota. Please try again tomorrow!
                   </p>
                 </>
               ) : (
