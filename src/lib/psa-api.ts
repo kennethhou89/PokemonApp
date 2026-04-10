@@ -29,10 +29,13 @@ export function isPSAEnabled(): boolean {
   return !!import.meta.env.VITE_PSA_API_TOKEN
 }
 
-// In dev: Vite proxies /api/psa → https://api.psacard.com/publicapi (avoids CORS)
-// In prod: Vercel serverless function at /api/psa proxies server-side
+// In dev: Vite proxies /api/psa/* → https://api.psacard.com/publicapi/* (avoids CORS)
+// In prod: Vercel serverless function at /api/psa?path=... proxies server-side
 function psaUrl(path: string): string {
-  return `/api/psa${path}`
+  if (import.meta.env.DEV) {
+    return `/api/psa${path}`
+  }
+  return `/api/psa?path=${encodeURIComponent(path)}`
 }
 
 export async function lookupPSACert(certNumber: string): Promise<PSACert | null> {
