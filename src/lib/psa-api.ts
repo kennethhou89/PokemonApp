@@ -30,14 +30,9 @@ export function isPSAEnabled(): boolean {
 }
 
 // In dev: Vite proxies /api/psa → https://api.psacard.com/publicapi (avoids CORS)
-// In prod: calls the Supabase Edge Function which proxies server-side
+// In prod: Vercel serverless function at /api/psa proxies server-side
 function psaUrl(path: string): string {
-  if (import.meta.env.DEV) {
-    return `/api/psa${path}`
-  }
-  // Production: Supabase Edge Function proxy
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string
-  return `${supabaseUrl}/functions/v1/psa-proxy${path}`
+  return `/api/psa${path}`
 }
 
 export async function lookupPSACert(certNumber: string): Promise<PSACert | null> {
@@ -49,8 +44,6 @@ export async function lookupPSACert(certNumber: string): Promise<PSACert | null>
   const cleaned = certNumber.trim().replace(/[\s-]/g, '')
   if (!cleaned) throw new Error('Enter a valid PSA cert number')
 
-  // In dev: Vite proxy injects the token server-side (no Authorization header needed from browser)
-  // In prod: Supabase Edge Function handles auth server-side
   const res = await fetch(psaUrl(`/cert/GetByCertNumber/${cleaned}`), {
     headers: { Accept: 'application/json' },
   })
