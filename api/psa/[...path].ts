@@ -1,21 +1,14 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node'
-
 const PSA_BASE = 'https://api.psacard.com/publicapi'
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Headers', 'content-type')
-  if (req.method === 'OPTIONS') return res.status(200).end()
-
+export async function GET(request: Request) {
   const token = process.env.PSA_API_TOKEN
   if (!token) {
-    return res.status(500).json({ error: 'PSA_API_TOKEN not configured' })
+    return Response.json({ error: 'PSA_API_TOKEN not configured' }, { status: 500 })
   }
 
-  // req.query.path is the catch-all segments, e.g. ["cert","GetByCertNumber","134870673"]
-  const segments = Array.isArray(req.query.path) ? req.query.path : [req.query.path]
-  const psaPath = '/' + segments.join('/')
+  // Extract the PSA path from the URL: /api/psa/cert/GetByCertNumber/123 → /cert/GetByCertNumber/123
+  const url = new URL(request.url)
+  const psaPath = url.pathname.replace(/^\/api\/psa/, '')
 
   try {
     const upstream = await fetch(`${PSA_BASE}${psaPath}`, {
@@ -25,8 +18,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
     })
     const body = await upstream.text()
-    res.status(upstream.status).setHeader('Content-Type', 'application/json').end(body)
+    return new Response(body, {
+      status: upstream.status,
+      headers: { 'Content-Type': 'application/json' },
+    })
   } catch (e) {
-    res.status(502).json({ error: String(e) })
+    return Response.json({ error: String(e) }, { status: 502 })
   }
 }
