@@ -54,6 +54,7 @@ export async function lookupPSACert(certNumber: string): Promise<PSACert | null>
   if (res.status === 204) throw new Error('Cert number is required')
   if (res.status === 401) throw new Error('Invalid PSA API token — check VITE_PSA_API_TOKEN')
   if (res.status === 404) throw new Error('not_found')
+  if (res.status === 429) throw new Error('rate_limited')
   if (!res.ok) throw new Error('lookup_failed')
 
   const data: PSACertResponse = await res.json()

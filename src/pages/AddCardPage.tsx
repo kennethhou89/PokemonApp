@@ -295,6 +295,13 @@ export function AddCardPage() {
                     Double-check the number on the PSA label — it's usually 8–9 digits.
                   </p>
                 </>
+              ) : certError === 'rate_limited' ? (
+                <>
+                  <p className="text-base font-semibold text-gray-700">Too many lookups</p>
+                  <p className="text-sm text-gray-400 mt-1.5 leading-relaxed">
+                    PSA's daily lookup limit has been reached. Try again tomorrow.
+                  </p>
+                </>
               ) : (
                 <>
                   <p className="text-base font-semibold text-gray-700">Something went wrong</p>
